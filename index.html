@@ -1054,25 +1054,29 @@
     </div>
 
     <script>
+    document.addEventListener('DOMContentLoaded', function() {
         // --- INICIO: CÓDIGO PARA OCULTAR PRECIOS ---
         const urlParams = new URLSearchParams(window.location.search);
         const sinPrecio = urlParams.get('sinprecio');
+        console.log('URL parameter "sinprecio":', sinPrecio); // Debugging line
 
         if (sinPrecio === 'true') {
-            // El Slide 6 (Inversión) corresponde a data-slide="5"
-            const inversionSlide = document.querySelector('[data-slide="5"]'); 
-            
+            const inversionSlide = document.querySelector('[data-slide="5"]');
+            console.log('Found slide to remove:', inversionSlide); // Debugging line
             if (inversionSlide) {
-                inversionSlide.remove(); // Borra la diapositiva de precios
+                inversionSlide.remove();
+                console.log('Slide [data-slide="5"] has been removed.'); // Debugging line
             }
         }
         // --- FIN: CÓDIGO PARA OCULTAR PRECIOS ---
 
         let currentSlideIndex = 0;
         const slidesContainer = document.getElementById('slidesContainer');
-        const slides = document.querySelectorAll('.slide');
+        const slides = document.querySelectorAll('.slide'); // Re-query slides
         const totalSlides = slides.length;
         let isMuted = true;
+
+        console.log('Total slides after potential removal:', totalSlides); // Debugging line
 
         // Inicializa los indicadores de progreso (barras inferiores)
         function initProgressIndicators() {
@@ -1124,7 +1128,7 @@
         }
 
         // Ir a la siguiente diapositiva
-        function nextSlide() {
+        window.nextSlide = function() {
             if (currentSlideIndex < totalSlides - 1) {
                 currentSlideIndex++;
                 updateSlide();
@@ -1132,7 +1136,7 @@
         }
 
         // Ir a la diapositiva anterior
-        function prevSlide() {
+        window.prevSlide = function() {
             if (currentSlideIndex > 0) {
                 currentSlideIndex--;
                 updateSlide();
@@ -1140,13 +1144,13 @@
         }
 
         // Ir a una diapositiva específica (al hacer clic en las barras)
-        function goToSlide(index) {
+        window.goToSlide = function(index) {
             currentSlideIndex = index;
             updateSlide();
         }
 
         // Activar/Desactivar audio de todos los videos
-        function toggleAudio() {
+        window.toggleAudio = function() {
             isMuted = !isMuted;
             const btn = document.getElementById('audioToggle');
             btn.textContent = isMuted ? '🔇' : '🔊';
@@ -1165,6 +1169,7 @@
         // Inicializar la presentación al cargar la página
         initProgressIndicators();
         updateSlide();
+    });
     </script>
 </body>
 </html>
