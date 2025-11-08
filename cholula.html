@@ -1,0 +1,1154 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Cholula 109 - Vivienda Premium en Hipódromo Condesa. Solo 3 departamentos disponibles. Financiamiento flexible desde $1,350,000">
+    <title>Cholula 109 - Vivienda Premium en Hipódromo Condesa</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            /* Usamos la fuente Inter con fallbacks estándar */
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #0a0f1f; /* Fondo oscuro principal */
+            color: #fff;
+            overflow: hidden; /* Evita el scroll vertical de la página */
+        }
+
+        .presentation-container {
+            width: 100vw;
+            height: 100vh;
+            position: relative;
+            background: linear-gradient(135deg, #0a0f1f 0%, #0f1a2e 50%, #1a2a3e 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .slides-wrapper {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            overflow: hidden; /* Oculta las diapositivas que no están activas */
+        }
+
+        .slides-container {
+            display: flex; /* Coloca las diapositivas en una fila horizontal */
+            width: 100%;
+            height: 100%;
+            /* * TRANSICIÓN HORIZONTAL LATERAL EXPLÍCITA
+             * Esta es la propiedad clave. 'transform' se animará usando JavaScript.
+             * La transición suave (0.8s) y la curva bezier crean el efecto de deslizamiento.
+             */
+            transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .slide {
+            width: 100vw;
+            height: 100vh;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: visible;
+            padding: 60px 40px;
+        }
+
+        .hero-slide {
+            padding: 0;
+        }
+
+        /* NUEVO ESTILO PARA EL WRAPPER DE CONTENIDO */
+        .slide-content-wrapper {
+            width: 100%;
+            max-width: 1200px;
+            text-align: center;
+            overflow-y: auto;
+            height: 100%;
+            /* Personalización de scrollbar */
+            scrollbar-width: thin;
+            scrollbar-color: rgba(6, 182, 212, 0.3) transparent;
+        }
+
+        .slide-content-wrapper::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .slide-content-wrapper::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .slide-content-wrapper::-webkit-scrollbar-thumb {
+            background: rgba(6, 182, 212, 0.3);
+            border-radius: 4px;
+        }
+
+        .slide-content-wrapper::-webkit-scrollbar-thumb:hover {
+            background: rgba(6, 182, 212, 0.5);
+        }
+
+        /* Slide 1: Hero */
+        .hero-slide {
+            background: linear-gradient(135deg, #0a0f1f 0%, #0f1a2e 100%);
+            position: relative;
+        }
+
+        .hero-slide video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.4;
+            filter: brightness(0.8) contrast(1.1);
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(180deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.7) 100%);
+            z-index: 2;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 3;
+            text-align: center;
+            padding: 40px 20px;
+            max-width: 800px;
+            /* Añadido para centrar verticalmente el contenido del hero slide */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            height: 100%;
+        }
+
+        .logo-group {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-bottom: 30px;
+        }
+
+        .logo-group img {
+            height: 50px;
+            object-fit: contain;
+        }
+
+        .hero-content h1 {
+            font-size: clamp(2.5rem, 8vw, 4rem); /* Tamaño de fuente responsivo */
+            font-weight: 900;
+            margin-bottom: 15px;
+            letter-spacing: -2px;
+            /* Color de texto degradado (Azul Turquesa) */
+            background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-content .tagline {
+            font-size: clamp(1rem, 3vw, 1.3rem);
+            color: #06b6d4;
+            font-weight: 600;
+            margin-bottom: 30px;
+            letter-spacing: 0.5px;
+        }
+
+        .hero-info {
+            max-width: 600px;
+            margin: 0 auto 40px;
+            font-size: clamp(0.75rem, 2vw, 0.95rem);
+            line-height: 1.8;
+            color: #d1d5db;
+        }
+
+        .hero-info p {
+            margin: 10px 0;
+            font-weight: 500;
+            letter-spacing: 0.3px;
+        }
+
+        .cta-button {
+            background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%);
+            color: #fff;
+            border: none;
+            padding: 18px 45px;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-block;
+            box-shadow: 0 10px 25px rgba(6, 182, 212, 0.3);
+            letter-spacing: 0.5px;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px) scale(1.02);
+            box-shadow: 0 15px 35px rgba(6, 182, 212, 0.5);
+        }
+
+        .cta-button:active {
+            transform: translateY(0) scale(1);
+        }
+
+        /* Slides de Contenido General */
+        .content-slide {
+            background: linear-gradient(135deg, #0a0f1f 0%, #0f1a2e 100%);
+            /* Padding movido a .slide */
+        }
+
+        .content-slide h2 {
+            font-size: clamp(2rem, 6vw, 3.5rem);
+            font-weight: 900;
+            margin-bottom: 25px;
+            text-align: center;
+            background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -1px;
+        }
+
+        .content-slide .subtitle {
+            font-size: clamp(1rem, 2.5vw, 1.3rem);
+            color: #06b6d4;
+            text-align: center;
+            font-weight: 600;
+            margin-bottom: 40px;
+            letter-spacing: 0.5px;
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: left;
+        }
+
+        .card {
+            background: rgba(6, 182, 212, 0.05);
+            border: 1px solid rgba(6, 182, 212, 0.2);
+            border-radius: 16px;
+            padding: 35px;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .card p {
+            color: #d1d5db;
+            line-height: 1.8;
+            font-size: 1rem;
+        }
+
+        .card:hover {
+            border-color: rgba(6, 182, 212, 0.6);
+            background: rgba(6, 182, 212, 0.1);
+            transform: translateY(-5px);
+        }
+
+        .card h3 {
+            color: #06b6d4;
+            font-size: 1.4rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .card ul {
+            list-style: none;
+        }
+
+        .card li {
+            display: flex;
+            align-items: center;
+            margin: 10px 0;
+            font-size: 0.95rem;
+            color: #d1d5db;
+        }
+
+        .card li:before {
+            content: "✓";
+            color: #06b6d4;
+            margin-right: 10px;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        .card ul li strong {
+            color: #06b6d4;
+            font-weight: 700;
+        }
+
+        /* Contenedor de Video */
+        .video-container {
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(6, 182, 212, 0.2);
+        }
+
+        .video-container:hover {
+            box-shadow: 0 20px 25px -5px rgba(6, 182, 212, 0.4);
+            border-color: rgba(6, 182, 212, 0.6);
+        }
+
+        .video-container video {
+            width: 100%;
+            height: auto;
+            display: block;
+            background: #000;
+        }
+
+        /* Galería de Imágenes */
+        .image-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: left;
+        }
+
+        .gallery-item {
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            border: 1px solid rgba(6, 182, 212, 0.2);
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 20px 25px -5px rgba(6, 182, 212, 0.4);
+            border-color: rgba(6, 182, 212, 0.6);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .gallery-item-label {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.8) 100%);
+            color: #fff;
+            padding: 20px 15px;
+            font-weight: bold;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .gallery-item:hover .gallery-item-label {
+            opacity: 1;
+        }
+
+        /* Tabla de Inversión */
+        .investment-table {
+            background: rgba(6, 182, 212, 0.05);
+            border: 1px solid rgba(6, 182, 212, 0.2);
+            border-radius: 16px;
+            overflow: hidden;
+            max-width: 500px;
+            margin: 0 auto 30px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .investment-table-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 15px 20px;
+            border-bottom: 1px solid rgba(6, 182, 212, 0.1);
+            font-size: 1rem;
+        }
+
+        .investment-table-row:last-child {
+            border-bottom: none;
+            background: rgba(6, 182, 212, 0.1);
+            font-weight: bold;
+            border-top: 2px solid rgba(6, 182, 212, 0.3);
+        }
+
+        .investment-table-row .label {
+            color: #d1d5db;
+        }
+
+        .investment-table-row .value {
+            color: #06b6d4;
+            font-weight: bold;
+        }
+
+        /* Navegación */
+        .nav-container {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            z-index: 20;
+        }
+
+        .nav-button {
+            background: rgba(6, 182, 212, 0.2);
+            border: none;
+            color: #06b6d4;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid rgba(6, 182, 212, 0.3);
+        }
+
+        .nav-button:hover:not(:disabled) {
+            background: rgba(6, 182, 212, 0.4);
+            transform: scale(1.1);
+            border-color: rgba(6, 182, 212, 0.6);
+        }
+
+        .nav-button:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+        }
+
+        /* Navegación lateral para móvil */
+        .nav-side {
+            display: none;
+        }
+
+        .progress-indicators {
+            display: flex;
+            gap: 8px;
+        }
+
+        .progress-bar {
+            height: 4px;
+            background: #374151;
+            border-radius: 2px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .progress-bar.active {
+            background: linear-gradient(90deg, #06b6d4 0%, #0891b2 100%);
+            width: 24px;
+            box-shadow: 0 0 10px rgba(6, 182, 212, 0.5);
+        }
+
+        .progress-bar:not(.active) {
+            width: 8px;
+        }
+
+        .slide-counter {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            font-size: 0.9rem;
+            color: #6b7280;
+            font-weight: 600;
+            background: rgba(10, 15, 31, 0.8);
+            padding: 8px 16px;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(6, 182, 212, 0.2);
+        }
+
+        .audio-toggle {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            background: rgba(6, 182, 212, 0.2);
+            border: 1px solid rgba(6, 182, 212, 0.3);
+            color: #06b6d4;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .audio-toggle:hover {
+            background: rgba(6, 182, 212, 0.4);
+            border-color: rgba(6, 182, 212, 0.6);
+        }
+
+        /* Diseño Responsivo */
+        @media (max-width: 768px) {
+            .slide {
+                padding: 20px 15px;
+                overflow-y: auto;
+                overflow-x: hidden;
+                align-items: flex-start;
+                justify-content: flex-start;
+            }
+
+            .hero-slide {
+                padding: 0;
+                overflow: hidden;
+            }
+
+            .slide-content-wrapper {
+                overflow-y: visible;
+                height: auto;
+                padding-bottom: 20px;
+            }
+
+            .hero-content {
+                padding: 20px 15px;
+            }
+
+            .hero-content h1 {
+                margin-bottom: 10px;
+            }
+
+            .hero-info {
+                margin-bottom: 25px;
+                font-size: 0.85rem;
+            }
+
+            .logo-group {
+                margin-bottom: 20px;
+            }
+
+            .logo-group img {
+                height: 35px;
+            }
+
+            .slide-content-wrapper h2 {
+                margin-bottom: 15px;
+            }
+
+            .slide-content-wrapper .subtitle {
+                margin-bottom: 20px;
+                font-size: 0.95rem;
+            }
+
+            .content-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .image-gallery {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 12px;
+            }
+
+            .gallery-item img {
+                height: 120px;
+            }
+
+            .card {
+                padding: 20px;
+            }
+
+            .card h3 {
+                font-size: 1.1rem;
+                margin-bottom: 12px;
+            }
+
+            .card li {
+                font-size: 0.85rem;
+                margin: 8px 0;
+            }
+
+            .video-container {
+                margin-bottom: 0;
+            }
+
+            .investment-table {
+                max-width: 100%;
+            }
+
+            .investment-table-row {
+                padding: 12px 15px;
+                font-size: 0.9rem;
+            }
+
+            /* Ajuste para slide de inversión en móvil */
+            .content-grid[style*="grid-template-columns: 1fr 1fr"] {
+                grid-template-columns: 1fr !important;
+            }
+
+            .content-grid h3 {
+                font-size: 1.2rem !important;
+                margin-bottom: 20px !important;
+            }
+
+            .cta-button, .contact-button {
+                padding: 14px 35px;
+                font-size: 1rem;
+                margin: 0 auto;
+                display: block;
+                width: fit-content;
+            }
+
+            /* Galería de videos 2x2 en móvil vuelve a 1 columna */
+            .video-gallery-2x2 {
+                grid-template-columns: 1fr !important;
+            }
+
+            /* Ocultar navegación inferior en móvil */
+            .nav-container {
+                display: none;
+            }
+
+            .progress-indicators {
+                display: none;
+            }
+
+            .slide-counter {
+                display: none;
+            }
+
+            .audio-toggle {
+                display: none;
+            }
+
+            /* Navegación lateral para móvil */
+            .nav-side {
+                display: flex;
+                position: fixed;
+                top: 50%;
+                transform: translateY(-50%);
+                z-index: 100;
+                background: rgba(6, 182, 212, 0.3);
+                border: 2px solid rgba(6, 182, 212, 0.5);
+                backdrop-filter: blur(10px);
+                width: 45px;
+                height: 45px;
+                border-radius: 50%;
+                align-items: center;
+                justify-content: center;
+                cursor: pointer;
+                transition: all 0.3s ease;
+            }
+
+            .nav-side:hover {
+                background: rgba(6, 182, 212, 0.5);
+                border-color: rgba(6, 182, 212, 0.8);
+                transform: translateY(-50%) scale(1.1);
+            }
+
+            .nav-side:active {
+                transform: translateY(-50%) scale(0.95);
+            }
+
+            .nav-side.prev {
+                left: 10px;
+            }
+
+            .nav-side.next {
+                right: 10px;
+            }
+
+            .nav-side:disabled {
+                opacity: 0.2;
+                cursor: not-allowed;
+                pointer-events: none;
+            }
+
+            .nav-side svg {
+                width: 20px;
+                height: 20px;
+                fill: #06b6d4;
+            }
+
+            .footer {
+                margin-top: 40px;
+                padding-top: 20px;
+                font-size: 0.8rem;
+            }
+        }
+
+        /* Ajustes para pantallas muy pequeñas */
+        @media (max-width: 480px) {
+            .slide {
+                padding: 15px 12px;
+            }
+
+            .hero-content {
+                padding: 15px 12px;
+            }
+
+            .image-gallery {
+                grid-template-columns: 1fr;
+            }
+
+            .gallery-item img {
+                height: 200px;
+            }
+        }
+
+        /* Sección de Contacto */
+        .contact-button {
+            background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%);
+            color: #fff;
+            border: none;
+            padding: 18px 50px;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            box-shadow: 0 10px 25px rgba(6, 182, 212, 0.3);
+            letter-spacing: 0.5px;
+        }
+
+        .contact-button:hover {
+            transform: translateY(-2px) scale(1.02);
+            box-shadow: 0 15px 35px rgba(6, 182, 212, 0.5);
+        }
+
+        .contact-button:active {
+            transform: translateY(0) scale(1);
+        }
+
+        .footer {
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 1px solid rgba(6, 182, 212, 0.2);
+            color: #6b7280;
+            font-size: 0.85rem;
+            text-align: center;
+        }
+
+        /* Estilo para galería de videos 2x2 en desktop */
+        .video-gallery-2x2 {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Video que ocupa toda la altura en desktop */
+        @media (min-width: 769px) {
+            .content-grid .video-full-height {
+                display: flex;
+                align-items: stretch;
+            }
+            
+            .content-grid .video-full-height video {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+        }
+
+        /* Estilo para el último slide de contacto */
+        @media (min-width: 769px) {
+            .slide-content-wrapper[data-slide="7"] {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                padding: 60px 40px;
+            }
+
+            .slide-content-wrapper[data-slide="7"] h2 {
+                margin-bottom: 20px;
+            }
+
+            .slide-content-wrapper[data-slide="7"] .subtitle {
+                margin-bottom: 40px;
+            }
+
+            .slide-content-wrapper[data-slide="7"] .contact-button {
+                margin-bottom: 0;
+            }
+
+            .slide-content-wrapper[data-slide="7"] .footer {
+                margin-top: 50px;
+                margin-bottom: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="presentation-container">
+        <div class="slides-wrapper">
+            <div class="slides-container" id="slidesContainer">
+                
+                <!-- Slide 1: Hero -->
+                <div class="slide hero-slide" data-slide="0">
+                    <!-- El .hero-content ya maneja su propio centrado y padding -->
+                    <video autoplay muted loop playsinline>
+                        <source src="https://res.cloudinary.com/dtlpkbbcp/video/upload/v1761970071/Crea_un_video_202510312206_v0il2_vdnihk.mp4" type="video/mp4">
+                    </video>
+                    <div class="hero-overlay"></div>
+                    <div class="hero-content">
+                        <div class="logo-group">
+                            <img src="https://res.cloudinary.com/dtlpkbbcp/image/upload/v1761891745/img8_johvzg.png" alt="HR">
+                            <img src="https://res.cloudinary.com/dtlpkbbcp/image/upload/v1761891755/Captura_de_pantalla_2025-10-30_a_la_s_11.06.58_p.m._wxugr3.png" alt="INVI">
+                        </div>
+                        <h1>Cholula 109</h1>
+                        <p class="tagline">Vivienda Premium en Hipódromo Condesa</p>
+                        <div class="hero-info">
+                            <p><strong>SOLO 3 DEPARTAMENTOS DISPONIBLES</strong></p>
+                            <p>CHOLULA 109, HIPÓDROMO CONDESA</p>
+                            <p>CUAUHTÉMOC, CDMX</p>
+                        </div>
+                        <button class="cta-button" onclick="nextSlide()">Descubre el Proyecto</button>
+                    </div>
+                </div>
+
+                <!-- Slide 2: Ubicación -->
+                <div class="slide content-slide" data-slide="1">
+                    <!-- INICIA WRAPPER DE CONTENIDO -->
+                    <div class="slide-content-wrapper">
+                        <h2>Ubicación Estratégica</h2>
+                        <p class="subtitle">Hipódromo Condesa, Cuauhtémoc</p>
+                        
+                        <div class="content-grid">
+                            <div class="video-container video-full-height">
+                                <video autoplay muted loop playsinline>
+                                    <source src="https://res.cloudinary.com/dtlpkbbcp/video/upload/v1761970298/Crea_un_video_202510312211_fr4ix_bamsh2.mp4" type="video/mp4">
+                                </video>
+                            </div>
+                            <div>
+                                <div class="card">
+                                    <h3>Ubicación Premium</h3>
+                                    <p>En la exclusiva colonia Hipódromo Condesa, rodeado de comercios y servicios de clase mundial</p>
+                                </div>
+                                <div class="card" style="margin-top: 20px;">
+                                    <h3>Transporte Accesible</h3>
+                                    <p>Cerca de Metro Patriotismo y principales vías de comunicación</p>
+                                </div>
+                                <div class="card" style="margin-top: 20px;">
+                                    <h3>Inversión Segura</h3>
+                                    <p>Zona consolidada con alto potencial de revalorización inmobiliaria</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div> <!-- TERMINA WRAPPER DE CONTENIDO -->
+                </div>
+
+                <!-- Slide 3: El Proyecto -->
+                <div class="slide content-slide" data-slide="2">
+                    <!-- INICIA WRAPPER DE CONTENIDO -->
+                    <div class="slide-content-wrapper">
+                        <h2>El Proyecto</h2>
+                        <p class="subtitle">3 Departamentos Disponibles</p>
+                        
+                        <div class="content-grid">
+                            <div class="card">
+                                <h3>Especificaciones</h3>
+                                <ul>
+                                    <li><strong>3 Departamentos</strong> disponibles</li>
+                                    <li><strong>2 Recámaras</strong> amplias</li>
+                                    <li><strong>Sala y Comedor</strong> integrados</li>
+                                    <li><strong>Cocina</strong> moderna equipada</li>
+                                    <li><strong>Cuarto de Lavado</strong> independiente</li>
+                                </ul>
+                            </div>
+                            <div class="card">
+                                <h3>Características</h3>
+                                <ul>
+                                    <li>Diseño Contemporáneo - Arquitectura moderna</li>
+                                    <li>Acabados Premium - Materiales de calidad</li>
+                                    <li>Financiamiento Flexible - Opciones accesibles</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div> <!-- TERMINA WRAPPER DE CONTENIDO -->
+                </div>
+
+                <!-- Slide 4: Concepto y Diseño -->
+                <div class="slide content-slide" data-slide="3">
+                    <!-- INICIA WRAPPER DE CONTENIDO -->
+                    <div class="slide-content-wrapper">
+                        <h2>Concepto y Diseño</h2>
+                        <p class="subtitle">Arquitectura Vanguardista</p>
+                        
+                        <div class="video-container" style="max-width: 800px; margin: 0 auto;">
+                            <video autoplay muted loop playsinline>
+                                <source src="https://res.cloudinary.com/dtlpkbbcp/video/upload/v1761881871/r20pro_exs5j8.mov" type="video/mp4">
+                            </video>
+                        </div>
+                    </div> <!-- TERMINA WRAPPER DE CONTENIDO -->
+                </div>
+
+                <!-- Slide 5: Galería de Interiores -->
+                <div class="slide content-slide" data-slide="4">
+                    <!-- INICIA WRAPPER DE CONTENIDO -->
+                    <div class="slide-content-wrapper">
+                        <h2>Galería de Interiores</h2>
+                        <p class="subtitle">Espacios Diseñados con Detalle</p>
+                        
+                        <div class="image-gallery video-gallery-2x2" id="gallery">
+                            <div class="video-container">
+                                <video autoplay muted loop playsinline>
+                                    <source src="https://res.cloudinary.com/dtlpkbbcp/video/upload/v1761882479/r4pro_idsgg0.mov" type="video/mp4">
+                                </video>
+                            </div>
+                            <div class="video-container">
+                                <video autoplay muted loop playsinline>
+                                    <source src="https://res.cloudinary.com/dtlpkbbcp/video/upload/v1761882789/r14pro_grgh8b.mov" type="video/mp4">
+                                </video>
+                            </div>
+                            <div class="video-container">
+                                <video autoplay muted loop playsinline>
+                                    <source src="https://res.cloudinary.com/dtlpkbbcp/video/upload/v1761951386/Dpro2_ftiqf1.mov" type="video/mp4">
+                                </video>
+                            </div>
+                            <div class="video-container">
+                                <video autoplay muted loop playsinline>
+                                    <source src="https://res.cloudinary.com/dtlpkbbcp/video/upload/v1761882549/r5pro_ox5axw.mov" type="video/mp4">
+                                </video>
+                            </div>
+                        </div>
+                    </div> <!-- TERMINA WRAPPER DE CONTENIDO -->
+                </div>
+
+                <!-- Slide 6: Inversión -->
+                <div class="slide content-slide" data-slide="5">
+                    <!-- INICIA WRAPPER DE CONTENIDO -->
+                    <div class="slide-content-wrapper">
+                        <h2>Inversión</h2>
+                        <p class="subtitle">Financiamiento Flexible - $1,350,000</p>
+                        
+                        <div class="content-grid" style="grid-template-columns: 1fr 1fr;">
+                            <div>
+                                <h3 style="text-align: center; color: #06b6d4; margin-bottom: 25px; font-size: 1.5rem;">Opciones de Pago</h3>
+                                <div class="investment-table">
+                                    <div class="investment-table-row">
+                                        <span class="label">Pago Inicial</span>
+                                        <span class="value">$780,000</span>
+                                    </div>
+                                    <div class="investment-table-row">
+                                        <span class="label">A la Entrega</span>
+                                        <span class="value">$150,000</span>
+                                    </div>
+                                    <div class="investment-table-row">
+                                        <span class="label">A Crédito</span>
+                                        <span class="value">$420,000</span>
+                                    </div>
+                                    <div class="investment-table-row">
+                                        <span class="label">Inversión Total</span>
+                                        <span class="value">$1,350,000</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <h3>Financiamiento Seguro</h3>
+                                <ul>
+                                    <li>Términos flexibles adaptados a tu presupuesto</li>
+                                    <li>Firma con agrupación Social Denmex</li>
+                                    <li>Firma con notario público</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div> <!-- TERMINA WRAPPER DE CONTENIDO -->
+                </div>
+
+                <!-- Slide 7: Amenidades -->
+                <div class="slide content-slide" data-slide="6">
+                    <!-- INICIA WRAPPER DE CONTENIDO -->
+                    <div class="slide-content-wrapper">
+                        <h2>Amenidades y Ubicación</h2>
+                        <p class="subtitle">Servicios y Lugares Cercanos</p>
+                        
+                        <div class="image-gallery video-gallery-2x2">
+                            <div class="gallery-item">
+                                <img src="https://res.cloudinary.com/dtlpkbbcp/image/upload/v1761970367/patriotismo_pskmhj.png" alt="Metro">
+                                <div class="gallery-item-label">Metro Patriotismo</div>
+                            </div>
+                            <div class="gallery-item">
+                                <img src="https://res.cloudinary.com/dtlpkbbcp/image/upload/v1761970446/parque-espana_v896p8.jpg" alt="Parque">
+                                <div class="gallery-item-label">Parque España</div>
+                            </div>
+                            <div class="gallery-item">
+                                <img src="https://res.cloudinary.com/dtlpkbbcp/image/upload/v1761970492/angeles-mocel_pvnd8d.webp" alt="Hospital">
+                                <div class="gallery-item-label">Hospital Angeles Mocel</div>
+                            </div>
+                            <div class="gallery-item">
+                                <img src="https://res.cloudinary.com/dtlpkbbcp/image/upload/v1761970547/lasalle_fqyb8k.png" alt="Universidad">
+                                <div class="gallery-item-label">Universidad La Salle</div>
+                            </div>
+                        </div>
+                    </div> <!-- TERMINA WRAPPER DE CONTENIDO -->
+                </div>
+
+                <!-- Slide 8: Contacto -->
+                <div class="slide content-slide" data-slide="7">
+                    <!-- INICIA WRAPPER DE CONTENIDO -->
+                    <div class="slide-content-wrapper" data-slide="7">
+                        <h2>¿Listo para Invertir?</h2>
+                        <p class="subtitle">Contactanos</p>
+                        
+                        <!-- Link de WhatsApp -->
+                        <a href="https://wa.me/5543669778?text=Hola%2C%2C%20me%20gustar%C3%ADa%20recibir%20m%C3%A1s%20informaci%C3%B3n%20sobre%20el%20proyecto%20Cholula%20109" target="_blank" class="contact-button">
+                            Solicitar Información
+                        </a>
+                        
+                        <div class="footer">
+                            <p>© 2025 Cholula 109. Todos los derechos reservados.</p>
+                        </div>
+                    </div> <!-- TERMINA WRAPPER DE CONTENIDO -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Controles de Navegación -->
+    <button class="audio-toggle" id="audioToggle" onclick="toggleAudio()">🔇</button>
+    
+    <div class="nav-container">
+        <button class="nav-button" id="prevBtn" onclick="prevSlide()">❮</button>
+        
+        <div class="progress-indicators" id="progressIndicators"></div>
+        
+        <button class="nav-button" id="nextBtn" onclick="nextSlide()">❯</button>
+    </div>
+
+    <!-- Navegación lateral para móvil -->
+    <button class="nav-side prev" id="prevSide" onclick="prevSlide()">
+        <svg viewBox="0 0 24 24">
+            <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
+        </svg>
+    </button>
+    <button class="nav-side next" id="nextSide" onclick="nextSlide()">
+        <svg viewBox="0 0 24 24">
+            <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/>
+        </svg>
+    </button>
+
+    <div class="slide-counter">
+        <span id="currentSlide">1</span> / <span id="totalSlides">8</span>
+    </div>
+
+    <script>
+        let currentSlideIndex = 0;
+        const slidesContainer = document.getElementById('slidesContainer');
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+        let isMuted = true;
+
+        // Inicializa los indicadores de progreso (barras inferiores)
+        function initProgressIndicators() {
+            const container = document.getElementById('progressIndicators');
+            for (let i = 0; i < totalSlides; i++) {
+                const bar = document.createElement('div');
+                bar.className = 'progress-bar' + (i === 0 ? ' active' : '');
+                bar.onclick = () => goToSlide(i);
+                container.appendChild(bar);
+            }
+        }
+
+        // Función principal para actualizar la diapositiva visible
+        function updateSlide() {
+            /* * INSTRUCCIÓN CRÍTICA - TRANSICIÓN HORIZONTAL LATERAL
+             * Esta línea de código es la que ejecuta la transición.
+             * Mueve el 'slidesContainer' hacia la izquierda (eje X)
+             * multiplicando el índice actual por -100%.
+             * (ej. Slide 2 (índice 1) -> -100%, Slide 3 (índice 2) -> -200%)
+             * NO debe usar 'translateY' o cambiará a vertical.
+             */
+            const offset = -currentSlideIndex * 100;
+            slidesContainer.style.transform = `translateX(${offset}%)`;
+
+            // Actualiza las barras de progreso
+            document.querySelectorAll('.progress-bar').forEach((bar, index) => {
+                // 'active' significa que ya pasaste o estás en esa diapositiva
+                bar.classList.toggle('active', index <= currentSlideIndex);
+            });
+
+            // Actualiza el contador de texto (ej. "3 / 8")
+            document.getElementById('currentSlide').textContent = currentSlideIndex + 1;
+            document.getElementById('totalSlides').textContent = totalSlides;
+
+
+            // Deshabilita los botones en la primera y última diapositiva
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            const prevSideBtn = document.getElementById('prevSide');
+            const nextSideBtn = document.getElementById('nextSide');
+            
+            if (prevBtn) prevBtn.disabled = currentSlideIndex === 0;
+            if (nextBtn) nextBtn.disabled = currentSlideIndex === totalSlides - 1;
+            if (prevSideBtn) prevSideBtn.disabled = currentSlideIndex === 0;
+            if (nextSideBtn) nextSideBtn.disabled = currentSlideIndex === totalSlides - 1;
+        }
+
+        // Ir a la siguiente diapositiva
+        function nextSlide() {
+            if (currentSlideIndex < totalSlides - 1) {
+                currentSlideIndex++;
+                updateSlide();
+            }
+        }
+
+        // Ir a la diapositiva anterior
+        function prevSlide() {
+            if (currentSlideIndex > 0) {
+                currentSlideIndex--;
+                updateSlide();
+            }
+        }
+
+        // Ir a una diapositiva específica (al hacer clic en las barras)
+        function goToSlide(index) {
+            currentSlideIndex = index;
+            updateSlide();
+        }
+
+        // Activar/Desactivar audio de todos los videos
+        function toggleAudio() {
+            isMuted = !isMuted;
+            const btn = document.getElementById('audioToggle');
+            btn.textContent = isMuted ? '🔇' : '🔊';
+            
+            document.querySelectorAll('video').forEach(video => {
+                video.muted = isMuted;
+            });
+        }
+
+        // Navegación con teclado (Flecha Izquierda y Derecha)
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight') nextSlide();
+            if (e.key === 'ArrowLeft') prevSlide();
+        });
+
+        // Inicializar la presentación al cargar la página
+        initProgressIndicators();
+        updateSlide();
+    </script>
+</body>
+</html>
+
