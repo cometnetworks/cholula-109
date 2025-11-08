@@ -1054,6 +1054,20 @@
     </div>
 
     <script>
+        // --- INICIO: CÓDIGO PARA OCULTAR PRECIOS ---
+        const urlParams = new URLSearchParams(window.location.search);
+        const sinPrecio = urlParams.get('sinprecio');
+
+        if (sinPrecio === 'true') {
+            // El Slide 6 (Inversión) corresponde a data-slide="5"
+            const inversionSlide = document.querySelector('[data-slide="5"]'); 
+            
+            if (inversionSlide) {
+                inversionSlide.remove(); // Borra la diapositiva de precios
+            }
+        }
+        // --- FIN: CÓDIGO PARA OCULTAR PRECIOS ---
+
         let currentSlideIndex = 0;
         const slidesContainer = document.getElementById('slidesContainer');
         const slides = document.querySelectorAll('.slide');
@@ -1063,6 +1077,7 @@
         // Inicializa los indicadores de progreso (barras inferiores)
         function initProgressIndicators() {
             const container = document.getElementById('progressIndicators');
+            container.innerHTML = ''; // Limpia los indicadores existentes
             for (let i = 0; i < totalSlides; i++) {
                 const bar = document.createElement('div');
                 bar.className = 'progress-bar' + (i === 0 ? ' active' : '');
@@ -1085,8 +1100,10 @@
 
             // Actualiza las barras de progreso
             document.querySelectorAll('.progress-bar').forEach((bar, index) => {
-                // 'active' significa que ya pasaste o estás en esa diapositiva
-                bar.classList.toggle('active', index <= currentSlideIndex);
+                bar.classList.remove('active');
+                if (index <= currentSlideIndex) {
+                    bar.classList.add('active');
+                }
             });
 
             // Actualiza el contador de texto (ej. "3 / 8")
@@ -1148,21 +1165,6 @@
         // Inicializar la presentación al cargar la página
         initProgressIndicators();
         updateSlide();
-    </script>
-    <script>
-        // --- INICIO: CÓDIGO PARA OCULTAR PRECIOS ---
-        const urlParams = new URLSearchParams(window.location.search);
-        const sinPrecio = urlParams.get('sinprecio');
-
-        if (sinPrecio === 'true') {
-            // El Slide 6 (Inversión) corresponde a data-slide="5"
-            const inversionSlide = document.querySelector('[data-slide="5"]'); 
-            
-            if (inversionSlide) {
-                inversionSlide.remove(); // Borra la diapositiva de precios
-            }
-        }
-        // --- FIN: CÓDIGO PARA OCULTAR PRECIOS ---
     </script>
 </body>
 </html>
